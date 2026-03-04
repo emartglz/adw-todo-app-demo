@@ -48,6 +48,7 @@ function TaskItem({ task, onToggle, onDelete }) {
           message={`¿Eliminar la tarea "${task.title}"?`}
           onConfirm={() => { onDelete(task.id); setShowConfirm(false) }}
           onCancel={() => setShowConfirm(false)}
+          icon="UwU"
         />
       )}
     </div>
