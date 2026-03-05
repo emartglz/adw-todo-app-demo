@@ -1,6 +1,6 @@
 # Feature: Animated Rainbow Border for New TODOs
 
-**ADW ID:** /home/emartinez/work/adw-todo-app-demo/trees/issue-11/.issues/11/plan.md
+**ADW ID:** #11
 **Fecha:** 2026-03-05
 **Especificacion:** N/A
 
@@ -14,25 +14,25 @@ When a user creates a new TODO item, it appears with an animated rainbow border 
 - React state tracking (`newTaskId`) in `App.jsx` to identify the most recently created task
 - Auto-cleanup via `setTimeout` after 3 seconds, with timer ref management to handle rapid task creation
 - `isNew` prop propagation through `TaskList` down to `TaskItem`
-- Removal of previously existing features: `ConfirmDialog`, `ParticleBackground`, and confetti animation
+- Coexistence with existing features: `ConfirmDialog`, `ParticleBackground`, and confetti animation are preserved
 
 ## Implementacion Tecnica
 
 ### Ficheros Modificados
 
-- `frontend/src/App.jsx`: Added `newTaskId` state and `newTaskTimerRef`; sets ID on task creation with 3s auto-clear; passes `newTaskId` to `TaskList`; removed `ParticleBackground` and confetti imports/usage
+- `frontend/src/App.jsx`: Added `newTaskId` state and `newTaskTimerRef`; sets ID on task creation with 3s auto-clear; passes `newTaskId` to `TaskList`
 - `frontend/src/components/TaskList.jsx`: Added `newTaskId` prop; passes `isNew={task.id === newTaskId}` to each `TaskItem`
-- `frontend/src/components/TaskItem.jsx`: Added `isNew` prop; applies `rainbow-border` CSS class conditionally; removed `ConfirmDialog` and `showConfirm` state — delete now triggers directly
-- `frontend/src/index.css`: Added `@keyframes rainbow-rotate`, `.task-item.rainbow-border` styles with `::before` (rotating conic gradient) and `::after` (inner background mask) pseudo-elements; removed confirm dialog and particle background styles; changed body background to light `#f5f5f5`
+- `frontend/src/components/TaskItem.jsx`: Added `isNew` prop; applies `rainbow-border` CSS class conditionally
+- `frontend/src/index.css`: Added `@keyframes rainbow-rotate`, `.task-item.rainbow-border` styles with `::before` (rotating conic gradient) and `::after` (inner background mask) pseudo-elements
 - `frontend/src/__tests__/TaskItem.test.jsx`: Updated tests for `isNew` prop and `rainbow-border` class
 - `frontend/src/__tests__/App.test.jsx`: Added tests for `newTaskId` logic and timer cleanup
 
 ### Cambios Clave
 
-1. **CSS-only rainbow animation**: `.task-item.rainbow-border::before` uses a `conic-gradient` from red through the full spectrum back to red, rotated continuously via `rainbow-rotate` keyframes (2s linear infinite). The `::after` pseudo-element covers the interior, leaving only a ~2px rainbow border visible.
+1. **CSS-only rainbow animation**: `.task-item.rainbow-border::before` uses a `conic-gradient` from red through the full spectrum back to red, rotated continuously via `rainbow-rotate` keyframes (2s linear infinite). A `rainbow-fade` animation (3s, ease-out, forwards) fades the border out smoothly over the last ~30% of its duration. The `::after` pseudo-element covers the interior, leaving only a ~2px rainbow border visible.
 2. **Timer management**: `newTaskTimerRef.current` stores the active timeout. On each new task creation, any existing timer is cleared before setting a new one, ensuring only the latest task shows the rainbow effect.
-3. **Simplified delete flow**: `ConfirmDialog` removed — delete button now calls `onDelete(task.id)` directly without a confirmation step.
-4. **Cleanup of visual noise**: `ParticleBackground` component and `fireConfetti` utility removed entirely, simplifying the component tree and removing external dependencies.
+3. **Delete flow**: `ConfirmDialog` is preserved from the existing codebase; the rainbow border feature does not affect deletion behavior.
+4. **Visual coexistence**: `ParticleBackground` and `fireConfetti` are preserved alongside the rainbow border effect.
 
 ## Como Usar
 
@@ -67,4 +67,4 @@ Key test cases:
 
 - No new npm dependencies required — pure CSS and React state.
 - `conic-gradient` is supported in all modern browsers.
-- The direct delete (no confirm dialog) is a regression of the previous confirmation UX — if a confirm step is needed in the future, a new `ConfirmDialog` component would need to be reintroduced.
+- The existing `ConfirmDialog` confirmation UX is preserved from the main branch.

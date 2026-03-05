@@ -157,6 +157,11 @@ p {
   to { transform: rotate(360deg); }
 }
 
+@keyframes rainbow-fade {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 .task-item.rainbow-border {
   position: relative;
   overflow: hidden;
@@ -182,7 +187,7 @@ p {
     #8b00ff,
     #ff0000
   );
-  animation: rainbow-rotate 2s linear infinite;
+  animation: rainbow-rotate 2s linear infinite, rainbow-fade 3s ease-out forwards;
   z-index: -2;
 }
 
