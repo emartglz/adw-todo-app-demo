@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import ParticleBackground from './components/ParticleBackground'
 import { fetchTasks, createTask, updateTask, deleteTask, reorderTasks } from './services/api'
+import { fireConfetti } from './utils/confetti'
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -23,6 +25,7 @@ function App() {
 
   const handleToggleTask = async (id) => {
     const task = tasks.find(t => t.id === id)
+    if (!task.completed) fireConfetti()
     setTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t))
     await updateTask(id, { completed: !task.completed })
   }
@@ -39,6 +42,8 @@ function App() {
   }
 
   return (
+    <>
+    <ParticleBackground />
     <div className="app">
       <h1>Todo List</h1>
       <TaskForm onTaskCreated={handleCreateTask} />
@@ -49,6 +54,7 @@ function App() {
         onReorder={handleReorderTasks}
       />
     </div>
+    </>
   )
 }
 
