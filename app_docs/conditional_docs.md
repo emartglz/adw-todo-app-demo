@@ -22,3 +22,10 @@ Este documento te ayuda a determinar que documentacion deberias leer en funcion 
     - Cuando trabajes con cualquier cosa bajo frontend/
     - Cuando necesites saber como arrancar o testear la aplicacion React
     - Cuando trabajes con componentes, servicios o estilos del frontend
+
+- app_docs/feature-8-confetti-animation.md
+  - Condiciones:
+    - Cuando se trabaje con la animacion de confetis o feedback visual al completar tareas
+    - Cuando se implemente o modifique `handleToggleTask` en `App.jsx`
+    - Cuando se trabaje con `canvas-confetti` o el modulo `frontend/src/utils/confetti.js`
+    - Cuando se resuelvan problemas relacionados con animaciones en el frontend

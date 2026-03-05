@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 import { fetchTasks, createTask, updateTask, deleteTask, reorderTasks } from './services/api'
+import { fireConfetti } from './utils/confetti'
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -23,6 +24,7 @@ function App() {
 
   const handleToggleTask = async (id) => {
     const task = tasks.find(t => t.id === id)
+    if (!task.completed) fireConfetti()
     setTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t))
     await updateTask(id, { completed: !task.completed })
   }
