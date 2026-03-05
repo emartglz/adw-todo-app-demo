@@ -60,3 +60,21 @@ test('renders drag handle', () => {
   const handle = document.querySelector('.drag-handle')
   expect(handle).toBeInTheDocument()
 })
+
+test('applies rainbow-border class when isNew is true', () => {
+  render(<TaskItem task={mockTask} onToggle={() => {}} onDelete={() => {}} isNew={true} />)
+  const item = document.querySelector('.task-item')
+  expect(item).toHaveClass('rainbow-border')
+})
+
+test('does not apply rainbow-border class when isNew is false', () => {
+  render(<TaskItem task={mockTask} onToggle={() => {}} onDelete={() => {}} isNew={false} />)
+  const item = document.querySelector('.task-item')
+  expect(item).not.toHaveClass('rainbow-border')
+})
+
+test('does not apply rainbow-border class when isNew is not passed', () => {
+  render(<TaskItem task={mockTask} onToggle={() => {}} onDelete={() => {}} />)
+  const item = document.querySelector('.task-item')
+  expect(item).not.toHaveClass('rainbow-border')
+})

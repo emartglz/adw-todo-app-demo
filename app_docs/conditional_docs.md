@@ -22,3 +22,10 @@ Este documento te ayuda a determinar que documentacion deberias leer en funcion 
     - Cuando trabajes con cualquier cosa bajo frontend/
     - Cuando necesites saber como arrancar o testear la aplicacion React
     - Cuando trabajes con componentes, servicios o estilos del frontend
+
+- app_docs/feature-11-rainbow-border-new-tasks.md
+  - Condiciones:
+    - Cuando trabajes con efectos visuales o animaciones en TaskItem
+    - Cuando implementes feedback visual para acciones del usuario (crear, completar tareas)
+    - Cuando resuelvas problemas relacionados con la clase rainbow-border o el estado newTaskId
+    - Cuando trabajes con animaciones CSS en index.css relacionadas con tareas

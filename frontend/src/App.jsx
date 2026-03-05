@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 import { fetchTasks, createTask, updateTask, deleteTask, reorderTasks } from './services/api'
 
 function App() {
   const [tasks, setTasks] = useState([])
+  const [newTaskId, setNewTaskId] = useState(null)
+  const newTaskTimerRef = useRef(null)
 
   // Cargar tareas al montar el componente
   useEffect(() => {
@@ -19,6 +21,9 @@ function App() {
   const handleCreateTask = async (title) => {
     const newTask = await createTask(title)
     setTasks([...tasks, newTask])
+    if (newTaskTimerRef.current) clearTimeout(newTaskTimerRef.current)
+    setNewTaskId(newTask.id)
+    newTaskTimerRef.current = setTimeout(() => setNewTaskId(null), 3000)
   }
 
   const handleToggleTask = async (id) => {
@@ -47,6 +52,7 @@ function App() {
         onToggle={handleToggleTask}
         onDelete={handleDeleteTask}
         onReorder={handleReorderTasks}
+        newTaskId={newTaskId}
       />
     </div>
   )

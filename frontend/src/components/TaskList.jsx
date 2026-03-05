@@ -3,7 +3,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { arrayMove } from '@dnd-kit/sortable'
 import TaskItem from './TaskItem'
 
-function TaskList({ tasks, onToggle, onDelete, onReorder }) {
+function TaskList({ tasks, onToggle, onDelete, onReorder, newTaskId }) {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 5 }
@@ -35,6 +35,7 @@ function TaskList({ tasks, onToggle, onDelete, onReorder }) {
               task={task}
               onToggle={onToggle}
               onDelete={onDelete}
+              isNew={task.id === newTaskId}
             />
           ))}
         </div>

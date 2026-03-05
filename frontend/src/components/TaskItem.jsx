@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-function TaskItem({ task, onToggle, onDelete }) {
+function TaskItem({ task, onToggle, onDelete, isNew }) {
   const {
     attributes,
     listeners,
@@ -20,7 +20,7 @@ function TaskItem({ task, onToggle, onDelete }) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`task-item${isDragging ? ' dragging' : ''}`}
+      className={`task-item${isDragging ? ' dragging' : ''}${isNew ? ' rainbow-border' : ''}`}
       {...attributes}
     >
       <span className="drag-handle" {...listeners}>⠿</span>

@@ -148,3 +148,50 @@ p {
   text-decoration: line-through;
   color: #999;
 }
+
+/* Rainbow border animation for new tasks */
+@keyframes rainbow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.task-item.rainbow-border {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  border-color: transparent;
+}
+
+.task-item.rainbow-border::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    #ff0000,
+    #ff7700,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #8b00ff,
+    #ff0000
+  );
+  animation: rainbow-rotate 2s linear infinite;
+  z-index: -2;
+}
+
+.task-item.rainbow-border::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  z-index: -1;
+}
