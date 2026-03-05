@@ -22,3 +22,10 @@ Este documento te ayuda a determinar que documentacion deberias leer en funcion 
     - Cuando trabajes con cualquier cosa bajo frontend/
     - Cuando necesites saber como arrancar o testear la aplicacion React
     - Cuando trabajes con componentes, servicios o estilos del frontend
+
+- app_docs/feature-9-particle-background.md
+  - Condiciones:
+    - Cuando se trabaje con el componente ParticleBackground o el canvas animado
+    - Cuando se implemente o modifique efectos visuales de fondo en el frontend
+    - Cuando se resuelvan problemas de z-index o capas visuales en la UI
+    - Cuando se ajuste el tema de colores o el fondo de la aplicacion

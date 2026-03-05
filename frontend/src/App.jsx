@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import ParticleBackground from './components/ParticleBackground'
 import { fetchTasks, createTask, updateTask, deleteTask, reorderTasks } from './services/api'
 
 function App() {
@@ -39,6 +40,8 @@ function App() {
   }
 
   return (
+    <>
+    <ParticleBackground />
     <div className="app">
       <h1>Todo List</h1>
       <TaskForm onTaskCreated={handleCreateTask} />
@@ -49,6 +52,7 @@ function App() {
         onReorder={handleReorderTasks}
       />
     </div>
+    </>
   )
 }
 
